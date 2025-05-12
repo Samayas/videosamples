@@ -1,0 +1,60 @@
+﻿@model AdminManagement.ViewModels.Home.IndexViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container mt-4 socketControl">
+    <div class="row mb-4">
+        <div class="col">
+            <h5>System Status</h5>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th class="socketControlHeader">Load</th>
+                        <th class="socketControlHeader">Temperature</th>
+                        <th class="socketControlHeader">Humidity</th>
+                        <th class="socketControlHeader">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Load</td>
+                        <td>@Model.Temperature</td>
+                        <td>@Model.Humidity</td>
+                        <td>@Model.Status</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h5>Sockets Control</h5>
+            <table class="table table-hover align-middle">
+                <thead style="background-color: #04708E; color: white;">
+                    <tr>
+                        <th class="socketControlHeader">Socket Name</th>
+                        <th class="socketControlHeader text-center">Status</th>
+                        <th class="socketControlHeader text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var socket in Model.SocketsAndState)
+                    {
+                        <tr>
+                            <td class="text-left">@socket.Key</td>
+                            <td class="text-center">@socket.Value</td>
+                            <td class="text-center">
+                                <form asp-action="ToggleSocket" method="post" class="d-inline">  
+                                    <input type="hidden" name="socketName" value="@socket.Key" />
+                                    <input type="hidden" name="socketValue" value="@socket.Value" />
+                                    <button type="submit" class="btn btn-sm btn-primary buttonSocketControl">Toggle</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
