@@ -1,0 +1,31 @@
+﻿@{
+	ViewData["Title"] = "Serverside Controller V3 android Hack + Client script + NoScript - Image Large Medium Small";
+}
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		function getDeviceType() {
+			const width = window.innerWidth;
+			if (width < 768) return "mobile";
+			if (width < 1024) return "tablet";
+			return "desktop";
+		}
+
+		const type = getDeviceType();
+
+		document.querySelectorAll(".responsive-img").forEach(img => {
+			const imageName = img.dataset.name;
+			img.src = `/responsive-imageV3/${imageName}?size=${type}`;
+		});
+	});
+</script>
+
+<div class="container mt-5">
+	<h2>Server Controller V3 android hack + Client Script + Noscript - Large Medium Small</h2>
+
+	No Resize after load ! <br />
+	<img class="responsive-img" data-name="image.jpeg" />
+	<noscript>
+		<img src="/responsive-imageV3/image.jpeg" />
+	<</noscript>
+</div>

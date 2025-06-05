@@ -1,0 +1,28 @@
+﻿@{
+	ViewData["Title"] = "Clientside Image Responsive Bootstrap - Large Medium Small";
+}
+
+<div class="container mt-5">
+	<h2>Image Responsive Bootstrap - Large Medium Small</h2>
+
+	<div class="d-none d-lg-block">
+		<h4>Large Image</h4>
+		<b>The jpeg image is 4431k</b> <br />
+		<img src="/images/desktop/image.jpeg" class="img-fluid d-none d-lg-block" alt="Desktop Image" />
+		<br />
+	</div>
+
+	<div class="d-none d-md-block d-lg-none">
+		<h4>Medium Image</h4>
+		<b>The jpeg image is 29k</b> <br />
+		<img src="/images/tablet/image.jpeg" class="img-fluid d-none d-md-block d-lg-none" alt="Tablet Image" />
+		<br />
+	</div>
+
+	<div class="d-block d-md-none">
+		<h4>small Image</h4>
+		<b>The jpeg image is 19k</b> <br />
+		<img src="/images/mobile/image.jpeg" class="img-fluid d-block d-md-none" alt="Mobile Image" />
+		<br />
+	</div>
+</div>

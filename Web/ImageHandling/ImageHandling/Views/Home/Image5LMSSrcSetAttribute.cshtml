@@ -1,0 +1,15 @@
+﻿@{
+	ViewData["Title"] = "Cliendside SrcSet Attribute - Image Large Medium Small";
+}
+
+<div class="container">
+	<h2>SrcSet Attribute - Large Medium Small</h2>
+
+	Not working on android <br />
+
+	<img src="/images/desktop/image.jpeg"
+			srcset="/images/mobile/image.jpeg 480w, /images/tablet/image.jpeg 768w, /images/desktop/image.jpeg 1200w"
+			sizes="(max-width: 768px) 100vw, (max-width: 992px) 768px, 1200px"
+			alt="Responsive Image">
+
+</div>
