@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Image Types";
+}
+
+<div class="container">
+    <h2>Image Types</h2>
+
+    <p>
+        <ul>
+            <li>JPEG is optimized for minimum file size with acceptable quality loss for photos. Your 4KB JPEG is likely a highly compressed version.</li>
+            <li>GIF is for limited color palettes and animation.</li>
+            <li>PNG is for lossless quality, transparency, and images with sharp details/text. It will always be larger than a comparable lossy compressed image because it preserves all data.</li>
+            <li>WebP is a good modern alternative offering both lossy and lossless options, generally outperforming JPEG for lossy compression</li>
+            <li>HEIC is a modern, efficient lossy format.</li>
+            <li>Jfif is a specification for how JPEG data is structured within a file.</li>
+        </ul>
+    </p>
+
+    <h4>Original jpeg</h4>
+    <b>The jpeg image is 4.431kb</b> <br />
+    <p>JPEG is highly efficient for photographic images because it uses lossy compression. It's designed to discard information that the human eye is less likely to perceive, resulting in very small file sizes for a given level of quality. A 4KB 4K JPEG suggests a very high compression ratio was applied or the image itself is very simple (e.g., a solid color or gradient)</p>
+    <img src="/images/imageTypes/image.jpeg" />
+    <br />
+
+    <h4>GIF</h4>
+    <b>The GIF image is 17.000kb</b> <br />
+    <p>GIF is limited to a palette of 256 colors. When you convert a 4K image (which likely has millions of colors) to GIF, a process called "dithering" or "color quantization" occurs.</p>
+    <p>This tries to represent the original colors using only the available 256. While this significantly reduces the color information, the resulting image might still be complex enough (especially if dithering is applied) that its lossless compression (LZW algorithm) results in a larger file than a highly compressed JPEG or a lossy WebP. GIF is best suited for simple graphics, logos with limited colors, and animations.</p>
+    <img src="/images/imageTypes/image.gif" />
+    <br />
+
+    <h4>PNG</h4>
+    <b>The PNG image is 45.871kb</b> <br />
+    <p>PNG uses lossless compression. When you convert a JPEG to PNG, the PNG encoder is trying to perfectly reproduce all the pixels of the JPEG without discarding any data.</p>
+    <p>Even though the JPEG was lossy, the data it did retain is now being compressed losslessly. Since the JPEG has already removed information, the PNG has to work with what's left. Often, the artifacts introduced by JPEG compression (slight color variations, subtle noise) can actually be harder for lossless compression algorithms to compress efficiently, leading to larger file sizes than if the original image was, say, a clean, uncompressed render.</p>
+    <p>Also, if your original 4K image was simple, the JPEG could get it down to 4KB. But if that 4K image contained a lot of detailed information (even if it looked simple to the eye), then the PNG would capture all of that detail, which is why it becomes much larger. PNG is excellent for images with sharp edges, text, and large areas of uniform color, as its compression excels in those scenarios.</p>
+    <img src="/images/imageTypes/image.png" />
+    <br />
+
+    <h4>WebP</h4>
+    <b>The png image is 8.756kb</b> <br />
+    <p>WebP is a versatile format developed by Google. It supports both lossy and lossless compression.</p>
+    <p>When you save as WebP, it likely defaults to its lossy mode, which is more efficient than JPEG for similar quality. It's designed to provide better compression than JPEG while maintaining visual quality. This is why you see a size larger than your initial JPEG but significantly smaller than the PNG.</p>
+    <img src="/images/imageTypes/image.webp" />
+    <br />
+
+    <h4>heic</h4>
+    <b>The png image is 13.234kb</b> <br />
+    <p>HEIC (High-Efficiency Image Container) is a relatively newer format often used on Apple devices. It leverages modern video compression techniques (HEVC/H.265) for still images.</p>
+    <p>HEIC generally offers superior compression efficiency compared to JPEG at similar quality levels, which explains why it's larger than your very small JPEG but still significantly smaller than the PNG. It's a lossy format but very effective.</p>
+    <img src="/images/imageTypes/image.heic" />
+    <br />
+
+    <h4>Jfif</h4>
+    <b>The png image is 4.628kb</b> <br />
+    <p>It's a specification for how JPEG data is structured within a file. Think of it as a set of rules or a container format for JPEG compressed images.</p>
+    <img src="/images/imageTypes/image.jfif" />
+    <br />
+</div>

@@ -1,0 +1,14 @@
+﻿@{
+	ViewData["Title"] = "Clientside Picture Media - Large Medium Small";
+}
+
+<div class="container mt-5">
+	<h2>Picture Media - Large Medium Small</h2>
+
+	<picture>
+		<source media="(min-width: 992px)" srcset="/images/desktop/image.jpeg"> 
+		<source media="(min-width: 768px)" srcset="/images/tablet/image.jpeg">  
+		<img src="/images/mobile/image.jpeg" alt="Responsive Image">
+	</picture>	
+
+</div>

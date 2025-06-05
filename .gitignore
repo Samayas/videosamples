@@ -14,6 +14,6 @@
 /PDUs/LogiLink/PDUManagement/PDUBaseServiceAgent/bin
 /PDUs/LogiLink/PDUManagement/PDUBaseServiceAgent/obj
 *.user
-/ImageHandling/.vs
-/ImageHandling/ImageHandling/obj
+/Web/ImageHandling/ImageHandling/bin
 /Web/ImageHandling/ImageHandling/obj
+/Web/ImageHandling/.vs

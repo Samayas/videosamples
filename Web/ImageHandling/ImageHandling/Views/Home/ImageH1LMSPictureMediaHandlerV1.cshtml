@@ -1,0 +1,13 @@
+﻿@{
+	ViewData["Title"] = "Image Large Medium Small Image Controller";
+}
+
+<div class="container mt-5">
+	<h2>Server Controller Handler Picture media - Large Medium Small</h2>
+
+	<picture>
+		<source media="(min-width: 992px)" srcset="/responsive-imageH/image.jpeg?size=desktop">  
+		<source media="(min-width: 768px)" srcset="/responsive-imageH/image.jpeg?size=tablet">   
+		<img src="/responsive-imageH/image.jpeg?size=mobile" alt="Responsive Image">
+	</picture>
+</div>

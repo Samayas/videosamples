@@ -1,0 +1,30 @@
+﻿@{
+	ViewData["Title"] = "Clientside Data Attribute Script - Image Large Medium Small";
+}
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const width = window.innerWidth;
+		let device = "desktop";
+		if (width < 768) device = "mobile";
+		else if (width < 992) device = "tablet";
+
+		document.querySelectorAll(".responsive-img").forEach(img => {
+			const src = img.dataset[device];
+			if (src) img.src = src;
+		});
+	});
+</script>
+
+<div class="container">
+	<h2>Data Attribute Script - Large Medium Small</h2>
+
+	No Resize after load ! <br />
+
+	<img class="responsive-img"
+		data-desktop="/images/desktop/image.jpeg" 
+		data-mobile="/images/mobile/image.jpeg" 
+		data-tablet="/images/tablet/image.jpeg"
+			alt="Responsive Image">
+
+</div>
