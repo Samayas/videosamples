@@ -4,13 +4,16 @@
 
 /.vs
 /PDUs/LogiLink/BruteForce/.vs
-/PDUs/LogiLink/BruteForce/Application/bin/Debug/net9.0
+/PDUs/LogiLink/BruteForce/Application/bin
 /PDUs/LogiLink/BruteForce/Application/obj
 /PDUs/LogiLink/PDUManagement/.vs
-/PDUs/LogiLink/PDUManagement/AdminManagement/bin/Debug/net9.0
+/PDUs/LogiLink/PDUManagement/AdminManagement/bin
 /PDUs/LogiLink/PDUManagement/AdminManagement/obj
-/PDUs/LogiLink/PDUManagement/LogiLinkServiceAgent/bin/Debug/net9.0
+/PDUs/LogiLink/PDUManagement/LogiLinkServiceAgent/bin
 /PDUs/LogiLink/PDUManagement/LogiLinkServiceAgent/obj
-/PDUs/LogiLink/PDUManagement/PDUBaseServiceAgent/bin/Debug/net9.0
+/PDUs/LogiLink/PDUManagement/PDUBaseServiceAgent/bin
 /PDUs/LogiLink/PDUManagement/PDUBaseServiceAgent/obj
 *.user
+/ImageHandling/.vs
+/ImageHandling/ImageHandling/obj
+/Web/ImageHandling/ImageHandling/obj
