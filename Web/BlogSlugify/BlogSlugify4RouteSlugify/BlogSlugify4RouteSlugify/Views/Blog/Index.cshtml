@@ -1,0 +1,17 @@
+﻿@model BlogSlugify4RouteSlugify.ViewModels.Blog.BlogIndexViewModel
+@{
+    ViewData["Title"] = "Blog Posts";
+}
+
+<div class="container mt-5">
+    <h1>@ViewBag.Title</h1>
+    <ul class="list-group">
+        @foreach (var post in Model.Posts)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <h5 class="mb-1"><a href="@Url.Action("Article", "Blog", new { slug = post.slug })">@post.Title</a></h5>
+                <small class="text-muted"><i class="fas fa-user"></i> @post.CreationDate.ToString("dd/MM/yyyy")</small>
+            </li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,59 @@
+﻿@using BlogSlugify6DateSlugify.ViewModels.Home
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+    if (Model.StatusCode != 0)
+    {
+        ViewData["Title"] = $"Error {Model.StatusCode}";
+    }
+}
+
+<h1 class="text-danger">@ViewData["Title"]</h1>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <h2 class="text-danger">@Model.ErrorMessage</h2>
+}
+else
+{
+    <h2 class="text-danger">An error occurred while processing your request.</h2>
+}
+
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+@if (!string.IsNullOrEmpty(Model.OriginalPath))
+{
+    <p>
+        <strong>Request Path:</strong> <code>@Model.OriginalPath</code>
+    </p>
+}
+
+@if (!string.IsNullOrEmpty(Model.ExceptionType))
+{
+    <p>
+        <strong>Exception Type:</strong> <code>@Model.ExceptionType</code>
+    </p>
+}
+
+@if (Model.IsDevelopment)
+{
+    <h3>Development Mode Information</h3>
+    <p>
+        This error page is shown because the application is running in <strong>Development</strong> mode.
+        More detailed information about the error can be displayed.
+    </p>
+    @if (!string.IsNullOrEmpty(Model.StackTrace))
+    {
+        <h4>Stack Trace:</h4>
+        <pre>@Model.StackTrace</pre>
+    }
+    <p>
+        <em>Swapping to the <strong>Production</strong> environment will prevent detailed error information from being displayed to the end-user.</em>
+    </p>
+}

@@ -1,0 +1,11 @@
+﻿@model BlogSlugify5RouteExtraSlugify.ViewModels.Blog.BlogArticleViewModel
+@{
+    ViewData["Title"] = "Blog Post";
+}
+
+<div class="container mt-5">
+    <h2>@Model.Post.Title</h2>
+    <p><small class="text-muted">Posted on @Model.Post.CreationDate.ToString("dd/MM/yyyy")</small></p>
+    <hr />
+    <p>@Html.Raw(Model.Post.Post)</p>
+</div>
