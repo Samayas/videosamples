@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MergeCSProjectsToNuspec.App": {
+      "commandName": "Project",
+      "commandLineArgs": "nuspec=\"D:\\Projects\\Samayas\\Videos\\18 Nuget Nuspec Updater\\Sample\\NuspecUpdater\\TestProject4CombinedNugetApp\\Nuget\\Library.nuspec\" projects=\"D:\\Projects\\Samayas\\Videos\\18 Nuget Nuspec Updater\\Sample\\NuspecUpdater\\TestProject4CombinedNugetApp\\MainLibrary\\MainLibrary.csproj\";\"D:\\Projects\\Samayas\\Videos\\18 Nuget Nuspec Updater\\Sample\\NuspecUpdater\\TestProject4CombinedNugetApp\\SecondaryLibrary\\SecondaryLibrary.csproj\""
+    }
+  }
+}

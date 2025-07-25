@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>2.0.0</Version>
+		<Product>Samayas Secondary Library</Product>
+		<Description>Samayas Secondary Library Description.</Description>
+		<Copyright>Samayas Consulting</Copyright>
+		<Authors>Samayas Consulting</Authors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.6" />
+		<PackageReference Include="NETStandard.Library" Version="2.0.3" />
+	</ItemGroup>
+
+</Project>
