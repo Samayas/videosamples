@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Version>2.0.0</Version>
+		<Product>Samayas Secondary Library</Product>
+		<Description>Samayas Secondary Library Description.</Description>
+		<Copyright>Samayas Consulting</Copyright>
+		<Authors>Samayas Consulting</Authors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.6" />
+		<PackageReference Include="NETStandard.Library" Version="2.0.3" />
+		<PackageReference Include="Samayas.MSBuild.NuspecPackageReferenceUpdater" Version="1.0.12" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<!-- Path to the nuspec file to be updated -->
+		<NuspecUpdaterTask_NuspecFilePath>$(MSBuildProjectDirectory)\..\Nuget\Library.nuspec</NuspecUpdaterTask_NuspecFilePath>
+
+		<!-- List of .csproj files whose PackageReferences will be extracted -->
+		<NuspecUpdaterTask_ProjectFiles>
+			$(MSBuildThisFileDirectory)MainLibrary.csproj;
+			$(MSBuildThisFileDirectory)..\SecondaryLibrary\SecondaryLibrary.csproj
+		</NuspecUpdaterTask_ProjectFiles>
+
+		<!-- Set to true to enable the update task -->
+		<NuspecUpdaterTask_RunCondition>true</NuspecUpdaterTask_RunCondition>
+
+		<!-- Set to true to enable verbose error logging (optional) -->
+		<NuspecUpdaterTask_PublishErrorLogging>false</NuspecUpdaterTask_PublishErrorLogging>
+	</PropertyGroup>
+</Project>
