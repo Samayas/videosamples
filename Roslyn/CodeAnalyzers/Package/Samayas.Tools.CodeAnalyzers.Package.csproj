@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<AssemblyName>Samayas.Tools.CodeAnalyzers.Package</AssemblyName>
+		<RootNamespace>Samayas.Tools.CodeAnalyzers.Package</RootNamespace>
+		<PackageId>Samayas.Tools.CodeAnalyzers</PackageId>
+		<PackageVersion Condition=" '$(BUILD_BUILDNUMBER)' == '' ">1.0.0-Development</PackageVersion>
+		<PackageVersion Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(ProjectVersionNumber)</PackageVersion>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<Authors>Samayas Consulting</Authors>
+		<Product>Samayas Tools CodeAnalyzers Test Code Analyzer</Product>
+		<Description>Samayas Tools CodeAnalyzers Test Code Analyzer.</Description>
+		<Copyright>Samayas Consulting</Copyright>
+		<PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
+		<PackageTags>Analyzer, analyzers</PackageTags>
+		<DevelopmentDependency>true</DevelopmentDependency>
+		<NoPackageAnalysis>true</NoPackageAnalysis>
+		<ProjectGuid>{55991574-0128-4110-88D8-4422D99377FD}</ProjectGuid>
+
+		<TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Analyzer\Samayas.Tools.CodeAnalyzers.Analyzers.csproj" />
+		<ProjectReference Include="..\CodeFixes\Samayas.Tools.CodeAnalyzers.CodeFixes.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="tools\*.ps1" CopyToOutputDirectory="PreserveNewest" Pack="true" PackagePath="" />
+	</ItemGroup>
+
+	<Target Name="_AddAnalyzersToOutput">
+		<ItemGroup>
+			<TfmSpecificPackageFile Include="$(OutputPath)\Samayas.Tools.CodeAnalyzers.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
+			<TfmSpecificPackageFile Include="$(OutputPath)\Samayas.Tools.CodeAnalyzers.Analyzers.dll" PackagePath="analyzers/dotnet/cs" />
+		</ItemGroup>
+	</Target>
+
+</Project>

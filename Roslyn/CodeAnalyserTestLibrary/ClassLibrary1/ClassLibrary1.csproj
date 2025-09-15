@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+	<ItemGroup>
+		<Analyzer Include="D:\Projects\Github\Roslyn\CodeAnalyzers\Analyzer\bin\Debug\netstandard2.0\Samayas.Tools.CodeAnalyzers.Analyzers.dll" />
+		<Analyzer Include="D:\Projects\Github\Roslyn\CodeAnalyzers\CodeFixes\bin\Debug\netstandard2.0\Samayas.Tools.CodeAnalyzers.CodeFixes.dll" />
+	</ItemGroup>
+</Project>
