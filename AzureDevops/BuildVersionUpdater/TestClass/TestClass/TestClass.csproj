@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<Version Condition=" '$(BUILD_BUILDNUMBER)' == '' ">1.0.0</Version>
+		<Version Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(ProjectVersionNumber)</Version>
+		<InformationalVersion Condition=" '$(BUILD_BUILDNUMBER)' == '' ">Development Build</InformationalVersion>
+		<InformationalVersion Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(BUILD_BUILDNUMBER)</InformationalVersion>
+		<TargetFramework>net9.0</TargetFramework>
+		<PackageId>TesClass Samayas.Eu</PackageId>
+		<Product>Samayas</Product>
+		<Company>Samayas</Company>
+		<Authors>Samayas</Authors>
+		<LangVersion>8.0</LangVersion>
+		<LangVersion>latest</LangVersion>
+	</PropertyGroup>
+
+</Project>
