@@ -8,9 +8,12 @@ namespace MIBExtractor
         public static void Main()
         {
             Console.WriteLine("Processing MIB Extractor");
-            
+            string[] mibLines = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "MIBs\\mikrotik.mib");
+            MIBParser mibParser = new MIBParser(mibLines);
+
             // Read MIB
-            MIBParser mibParser = new MIBParser(AppDomain.CurrentDomain.BaseDirectory + "MIBs\\mikrotik.mib");
+            mibParser = new MIBParser(AppDomain.CurrentDomain.BaseDirectory + "MIBs\\mikrotik.mib");
+
 
             Console.WriteLine("List Warnings");
             foreach (string warning in mibParser.Warnings)
