@@ -1,0 +1,43 @@
+﻿@section linkcanonical {
+    <link rel="canonical" href="https://localhost:7078/Home/Privacy" />
+}
+
+@section jsonld {
+        @Html.Raw(@"<script type=""application/ld+json"">{
+            ""@context"": ""https://schema.org"",
+            ""@graph"": [
+                {
+                    ""@type"": ""WebPage"",
+                    ""@id"": ""https://localhost:7078/Home/BlogPost#webpage"",
+                    ""url"": ""https://localhost:7078/Home/BlogPost"",
+                    ""name"": ""Privacy"",
+                    ""isPartOf"": { ""@id"": ""https://localhost:7078#website"" },
+                    ""description"": ""Privacy for Samayas."",
+                    ""inLanguage"": ""en""
+                },
+                {
+                    ""@type"": ""WebSite"",
+                    ""@id"": ""https://localhost:7078#website"",
+                    ""url"": ""https://localhost:7078/"",
+                    ""name"": ""Samayas"",
+                    ""inLanguage"": ""en"",
+                    ""publisher"": { ""@id"": ""https://localhost:7078#org"" }
+                },
+                {
+                    ""@type"": ""Organization"",
+                    ""name"": ""Samayas"",
+                    ""logo"": {
+                        ""@type"": ""ImageObject"",
+                        ""url"": ""https://localhost:7078/images/logo/logo.png"",
+                        ""width"": 157,
+                        ""height"": 156
+                    },                    
+                    ""@id"": ""https://localhost:7078#org""
+                }
+            ]
+        }</script>")
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your site's privacy policy.</p>

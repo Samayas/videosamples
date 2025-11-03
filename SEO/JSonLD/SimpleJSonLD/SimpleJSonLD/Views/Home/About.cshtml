@@ -1,0 +1,49 @@
+﻿@section linkcanonical {
+    <link rel="canonical" href="https://localhost:7078/Home/About" />
+}
+
+@section jsonld {
+        @Html.Raw(@"<script type=""application/ld+json"">{
+            ""@context"": ""https://schema.org"",
+            ""@graph"": [
+                {
+                    ""@type"": ""WebPage"",
+                    ""@id"": ""https://localhost:7078/Home/About#webpage"",
+                    ""url"": ""https://localhost:7078/Home/About"",
+                    ""name"": ""Samayas"",
+                    ""isPartOf"": { ""@id"": ""https://localhost:7078#website"" },
+                    ""description"": ""About Samayas"",
+                    ""inLanguage"": ""en""
+                },
+                {
+                    ""@type"": ""WebSite"",
+                    ""@id"": ""https://localhost:7078#website"",
+                    ""url"": ""https://localhost:7078/"",
+                    ""name"": ""Samayas"",
+                    ""inLanguage"": ""en"",
+                    ""publisher"": { ""@id"": ""https://localhost:7078#org"" }
+                },
+                {
+                    ""@type"": ""Organization"",
+                    ""name"": ""Samayas"",
+                    ""logo"": {
+                        ""@type"": ""ImageObject"",
+                        ""url"": ""https://localhost:7078/images/logo/logo.png"",
+                        ""width"": 157,
+                        ""height"": 156
+                    },                    
+                    ""@id"": ""https://localhost:7078#org""
+                }
+            ]
+        }</script>")
+}
+
+<div class="text-center">
+    <h1>About page for Samayas</h1>
+
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
+    <br  />
+
+    <img src="/images/about.png" width="300" height="200" alt="about this site"/>
+</div>
