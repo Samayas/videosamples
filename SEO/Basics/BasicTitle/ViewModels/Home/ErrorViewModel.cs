@@ -1,8 +1,8 @@
-namespace ModelizedCanonical.ViewModels.Home
+namespace BasicTitle.ViewModels.Home
 {
     public class ErrorViewModel : BaseViewModel
     {
-        public ErrorViewModel() : base("", "", "", null, null)
+        public ErrorViewModel() : base("Error")
         {
         }
 
