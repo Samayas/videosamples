@@ -1,0 +1,23 @@
+﻿@model BasicTextbased.ViewModels.BaseViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+@await Html.PartialAsync("Layout/_Meta.cshtml")
+    <title>@Model.Title - Samayas</title>
+@await Html.PartialAsync("Layout/_Link.cshtml")
+    <script type="importmap"></script>
+</head>
+<body>
+@await Html.PartialAsync("Layout/_Header.cshtml")
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+@await Html.PartialAsync("Layout/_Footer.cshtml")
+@await Html.PartialAsync("Layout/_Scripts.cshtml")
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
