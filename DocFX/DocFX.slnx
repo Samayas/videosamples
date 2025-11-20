@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DocFX/DocFX.csproj" />
+  <Project Path="FwkLibrary/FwkLibrary.csproj" />
+</Solution>

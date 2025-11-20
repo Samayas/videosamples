@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="TestProject1/TestProject1.csproj" />
+  <Project Path="TestProject2/TestProject2.csproj" />
+  <Project Path="TestProject3/TestProject3.csproj" />
+  <Project Path="TestProject4/TestProject4.csproj" />
+  <Project Path="TestProject5/TestProject5.csproj" />
+</Solution>
