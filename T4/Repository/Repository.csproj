@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Samayas.CodeGenerator" Version="1.1.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="**\*.tt" />
+		<Compile Update="**\*.g.cs">
+			<DependentUpon>$([System.IO.Path]::GetFileNameWithoutExtension('%(Filename)')).tt</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+	</ItemGroup>
+
+	<Target Name="GenerateRepositories" BeforeTargets="BeforeBuild" DependsOnTargets="ResolveAssemblyReferences">
+		<Exec Command="dotnet tool restore" />
+
+		<ItemGroup>
+			<T4Templates Include="**\*.tt" Exclude="bin\**;obj\**" />
+		</ItemGroup>
+
+		<ItemGroup>
+			<CodeGenAssembly Include="@(ReferencePath)" Condition="$([System.String]::new('%(Filename)').Contains('Samayas.CodeGenerator'))" />		
+		</ItemGroup>
+
+		<PropertyGroup>
+			<CodeGenDllPath>@(CodeGenAssembly)</CodeGenDllPath>
+		</PropertyGroup>
+		
+		<Message Text="Resolved CodeGenerator: $(CodeGenDllPath)" Importance="high" />
+
+
+		<Message Text="Processing @(T4Templates-&gt;Count()) T4 templates..." Importance="high" />
+
+		<!-- Debug: Show what namespace will be generated for each template -->
+		<Message Text="Template: %(T4Templates.Identity)" Importance="high" />
+		<Message Text="  RecursiveDir: %(T4Templates.RecursiveDir)" Importance="high" />
+		<Message Text="  Filename: %(T4Templates.Filename)" Importance="high" />
+
+		<Exec Command="dotnet t4 &quot;%(T4Templates.Identity)&quot; -o &quot;%(T4Templates.RelativeDir)%(T4Templates.Filename).g.cs&quot; -r &quot;$(CodeGenDllPath)&quot;" WorkingDirectory="$(ProjectDir)" />
+	</Target>
+
+</Project>

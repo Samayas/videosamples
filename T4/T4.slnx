@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="CodeGenerator/Samayas.CodeGenerator.csproj" />
+  <Project Path="Repository/Repository.csproj" Id="5b079ffe-87f3-4084-9ee4-8a680e9c3219" />
+</Solution>

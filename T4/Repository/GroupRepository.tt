@@ -1,0 +1,18 @@
+<#@ template language="C#" #>
+<#@ import namespace="Samayas.CodeGenerator.Repositories" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#
+    RepositoryGenerator generator = new RepositoryGenerator();
+    generator.Session = new Dictionary<string, object>
+    {
+        { "NamespaceName", "MyApp.Data.Repositories" },
+        { "EntityName", "Group" },
+        { "PrimaryKeyType", "int" },
+        { "IncludeAsync", true },
+        { "IncludeLogging", false },
+        { "ModelUsing", "Repository.Models" }
+    };
+
+    generator.Initialize();
+#>
+<#= generator.TransformText() #>

@@ -1,0 +1,170 @@
+<#@ template language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ parameter type="System.String" name="NamespaceName" #>
+<#@ parameter type="System.String" name="EntityName" #>
+<#@ parameter type="System.String" name="PrimaryKeyType" #>
+<#@ parameter type="System.Boolean" name="IncludeAsync" #>
+<#@ parameter type="System.Boolean" name="IncludeLogging" #>
+<#@ parameter type="System.String" name="ModelUsing" #>
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+<# if (IncludeAsync) { #>
+using System.Threading.Tasks;
+<# } #>
+<# if (IncludeLogging) { #>
+using Microsoft.Extensions.Logging;
+<# } #>
+using <#= ModelUsing #>;
+
+namespace <#= NamespaceName #>
+{
+    /// <summary>
+    /// Repository for <#= EntityName #> entities
+    /// Auto-generated on <#= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") #>
+    /// Version used <#= this.GetType().AssemblyQualifiedName #>
+    /// </summary>
+    public class <#= EntityName #>Repository : I<#= EntityName #>Repository
+    {
+        private readonly List<<#= EntityName #>> _dataStore;
+<# if (IncludeLogging) { #>
+        private readonly ILogger<<#= EntityName #>Repository> _logger;
+
+        public <#= EntityName #>Repository(ILogger<<#= EntityName #>Repository> logger)
+        {
+            _dataStore = new List<<#= EntityName #>>();
+            _logger = logger;
+        }
+<# } else { #>
+
+        public <#= EntityName #>Repository()
+        {
+            _dataStore = new List<<#= EntityName #>>();
+        }
+<# } #>
+
+<# if (IncludeAsync) { #>
+        public async Task<<#= EntityName #>> GetByIdAsync(<#= PrimaryKeyType #> id)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Retrieving {EntityName} with ID: {Id}", nameof(<#= EntityName #>), id);
+<# } #>
+            return await Task.FromResult(_dataStore.FirstOrDefault(x => x.Id.Equals(id)));
+        }
+
+        public async Task<IEnumerable<<#= EntityName #>>> GetAllAsync()
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Retrieving all {EntityName} entities", nameof(<#= EntityName #>));
+<# } #>
+            return await Task.FromResult(_dataStore.AsEnumerable());
+        }
+
+        public async Task AddAsync(<#= EntityName #> entity)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Adding new {EntityName} entity", nameof(<#= EntityName #>));
+<# } #>
+            _dataStore.Add(entity);
+            await Task.CompletedTask;
+        }
+
+        public async Task UpdateAsync(<#= EntityName #> entity)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Updating {EntityName} with ID: {Id}", nameof(<#= EntityName #>), entity.Id);
+<# } #>
+            <#= EntityName #> existing = _dataStore.FirstOrDefault(x => x.Id.Equals(entity.Id));
+            if (existing != null)
+            {
+                int index = _dataStore.IndexOf(existing);
+                _dataStore[index] = entity;
+            }
+            await Task.CompletedTask;
+        }
+
+        public async Task DeleteAsync(<#= PrimaryKeyType #> id)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Deleting {EntityName} with ID: {Id}", nameof(<#= EntityName #>), id);
+<# } #>
+            <#= EntityName #> entity = _dataStore.FirstOrDefault(x => x.Id.Equals(id));
+            if (entity != null)
+            {
+                _dataStore.Remove(entity);
+            }
+            await Task.CompletedTask;
+        }
+<# } else { #>
+        public <#= EntityName #> GetById(<#= PrimaryKeyType #> id)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Retrieving {EntityName} with ID: {Id}", nameof(<#= EntityName #>), id);
+<# } #>
+            return _dataStore.FirstOrDefault(x => x.Id.Equals(id));
+        }
+
+        public IEnumerable<<#= EntityName #>> GetAll()
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Retrieving all {EntityName} entities", nameof(<#= EntityName #>));
+<# } #>
+            return _dataStore.AsEnumerable();
+        }
+
+        public void Add(<#= EntityName #> entity)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Adding new {EntityName} entity", nameof(<#= EntityName #>));
+<# } #>
+            _dataStore.Add(entity);
+        }
+
+        public void Update(<#= EntityName #> entity)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Updating {EntityName} with ID: {Id}", nameof(<#= EntityName #>), entity.Id);
+<# } #>
+            <#= EntityName #> existing = _dataStore.FirstOrDefault(x => x.Id.Equals(entity.Id));
+            if (existing != null)
+            {
+                int index = _dataStore.IndexOf(existing);
+                _dataStore[index] = entity;
+            }
+        }
+
+        public void Delete(<#= PrimaryKeyType #> id)
+        {
+<# if (IncludeLogging) { #>
+            _logger.LogInformation("Deleting {EntityName} with ID: {Id}", nameof(<#= EntityName #>), id);
+<# } #>
+            <#= EntityName #> entity = _dataStore.FirstOrDefault(x => x.Id.Equals(id));
+            if (entity != null)
+            {
+                _dataStore.Remove(entity);
+            }
+        }
+<# } #>
+    }
+
+    public interface I<#= EntityName #>Repository
+    {
+<# if (IncludeAsync) { #>
+        Task<<#= EntityName #>> GetByIdAsync(<#= PrimaryKeyType #> id);
+        Task<IEnumerable<<#= EntityName #>>> GetAllAsync();
+        Task AddAsync(<#= EntityName #> entity);
+        Task UpdateAsync(<#= EntityName #> entity);
+        Task DeleteAsync(<#= PrimaryKeyType #> id);
+<# } else { #>
+        <#= EntityName #> GetById(<#= PrimaryKeyType #> id);
+        IEnumerable<<#= EntityName #>> GetAll();
+        void Add(<#= EntityName #> entity);
+        void Update(<#= EntityName #> entity);
+        void Delete(<#= PrimaryKeyType #> id);
+<# } #>
+    }
+}
