@@ -4,9 +4,31 @@ Write-Host "Granting certificate private key permissions to SQL Server service a
 $hostname = [System.Net.Dns]::GetHostByName($env:COMPUTERNAME).HostName
 Write-Host "Detected FQDN: $hostname"
 
-# SQL Server service account name
-$serviceAccount = "NT SERVICE\MSSQL`$SQLEXPRESS"
-Write-Host "Service Account: $serviceAccount"
+# SQL Server service account name (auto-detect)
+function Get-SqlServerServiceAccount {
+    # Find Database Engine services by executable (sqlservr.exe)
+    [Microsoft.Management.Infrastructure.CimInstance[]]$engineSvcs = @(Get-CimInstance -ClassName Win32_Service |
+        Where-Object { $_.PathName -match "sqlservr\.exe" })
+
+    if ($engineSvcs.Count -eq 0) {
+        throw "No SQL Server Database Engine service found on this machine (sqlservr.exe)."
+    }
+
+    # Prefer a running instance if possible
+    [Microsoft.Management.Infrastructure.CimInstance[]]$running = @($engineSvcs | Where-Object { $_.State -eq "Running" })
+
+    if ($running.Count -ge 1) {
+        # Deterministic pick if multiple are running: pick first by service Name
+        [Microsoft.Management.Infrastructure.CimInstance]$chosen = $running | Sort-Object Name | Select-Object -First 1
+        Write-Host "Detected running SQL service: $($chosen.Name) ($($chosen.DisplayName))"
+        return $chosen.StartName
+    }
+
+    # If none are running, but at least one exists, pick first by service Name
+    [Microsoft.Management.Infrastructure.CimInstance]$fallback = $engineSvcs | Sort-Object Name | Select-Object -First 1
+    Write-Host "Detected installed SQL service: $($fallback.Name) ($($fallback.DisplayName))"
+    return $fallback.StartName
+}
 
 function Get-CertificateTemplate {
     param([System.Security.Cryptography.X509Certificates.X509Certificate2]$Certificate)
@@ -88,6 +110,10 @@ function Grant-CertificatePrivateKeyPermission {
         return $false
     }
 }
+
+# SQL Server service account name
+$serviceAccount = Get-SqlServerServiceAccount
+Write-Host "Service Account: $serviceAccount"
 
 # Find the Machine template certificate
 $certificates = @(Get-ChildItem cert:\LocalMachine\My | Where-Object { 
