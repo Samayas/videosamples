@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/Solution Items/" />
+  <Project Path="STUNLibrary/STUNLibrary.csproj" />
+  <Project Path="STUNMauiApp/STUNMauiApp.csproj" Id="2d2731d4-a0ba-4184-a8a1-10052ab703a1">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="STUNWindowsApp/STUNWindowsApp.csproj" />
+</Solution>

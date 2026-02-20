@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="STUNMauiApp.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+
+            <Label Text="STUN Network Discovery"
+                   FontSize="32"
+                   HorizontalOptions="Center" />
+
+            <Button x:Name="DiscoverBtn"
+                    Text="Get Network Info"
+                    Clicked="OnDiscoverClicked"
+                    HorizontalOptions="Center" />
+
+            <ActivityIndicator x:Name="LoadingSpinner"
+                               IsRunning="False"
+                               Color="Orange" />
+
+            <!-- Output Area -->
+            <Label x:Name="OutputLabel"
+                   Text="Press button to scan..."
+                   FontSize="18"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
