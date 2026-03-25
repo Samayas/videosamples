@@ -7,9 +7,7 @@ using OpenAPIV1.Services.Interfaces;
 namespace OpenAPIV1.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [ApiExplorerSettings(GroupName = "weather")]
-    [ApiVersion(1.0)]
+    [Route("api/[controller]")]   
     public class WeatherController : ControllerBase
     {
         private readonly IWeatherService WeatherService;
@@ -21,7 +19,6 @@ namespace OpenAPIV1.Controllers
 
         /// <summary>Gets the weather forecast for a given location.</summary>
         /// <param name="weatherRequest">The query parameters containing the target location.</param>
-        /// <param name="cancellationToken">Propagates cancellation signal.</param>
         /// <returns>A <see cref="WeatherResponse"/> with the current forecast.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(WeatherResponse), StatusCodes.Status200OK)]

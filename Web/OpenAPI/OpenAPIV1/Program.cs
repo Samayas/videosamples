@@ -1,5 +1,4 @@
-﻿using Asp.Versioning;
-using OpenAPIV1.Services;
+﻿using OpenAPIV1.Services;
 using OpenAPIV1.Services.Interfaces;
 using Scalar.AspNetCore;
 
@@ -13,19 +12,6 @@ namespace OpenAPIV1.Controllers
 
             // Add services to the container.
             builder.Services.AddControllers();
-            builder.Services.AddApiVersioning(options =>
-            {
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.ReportApiVersions = true;
-
-            })
-            .AddMvc()
-            .AddApiExplorer(options =>
-            {
-                options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;  // <-- this is the fix
-            });
             builder.Services.AddProblemDetails();
             builder.Services.AddOpenApi(options =>
             {
