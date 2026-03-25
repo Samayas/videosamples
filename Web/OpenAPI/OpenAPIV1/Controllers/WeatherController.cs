@@ -1,5 +1,4 @@
-﻿using Asp.Versioning;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OpenAPIV1.Contracts.Requests;
 using OpenAPIV1.Contracts.Response;
 using OpenAPIV1.Services.Interfaces;

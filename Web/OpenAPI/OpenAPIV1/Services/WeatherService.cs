@@ -38,13 +38,13 @@ namespace OpenAPIV1.Services
             JsonElement root = document.RootElement;
 
             string localTime = root.GetProperty("location").GetProperty("localtime").GetString() ?? string.Empty;
-            double tempC = root.GetProperty("current").GetProperty("temp_c").GetDouble();
+            double temperatureCelsius = root.GetProperty("current").GetProperty("temp_c").GetDouble();
             string summary = root.GetProperty("current").GetProperty("condition").GetProperty("text").GetString() ?? string.Empty;
 
             return new WeatherResponse
             {
                 Date = DateTime.TryParse(localTime, out DateTime parsed) ? parsed : DateTime.UtcNow,
-                TemperatureCelsius = (decimal)tempC,
+                TemperatureCelsius = (decimal)temperatureCelsius,
                 Summary = summary
             };
         }
