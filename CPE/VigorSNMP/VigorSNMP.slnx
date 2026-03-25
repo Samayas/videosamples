@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="MIBDetails/MIBDetails.csproj" Id="e2933059-7a84-424e-9282-3f077fb8bb0c" />
+  <Project Path="VigorSNMP/VigorSNMP.csproj" />
+</Solution>
