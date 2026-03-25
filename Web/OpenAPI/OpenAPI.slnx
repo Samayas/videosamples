@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="OpenAPIV1/OpenAPIV1.csproj" />
+  <Project Path="OpenAPIV2/OpenAPIV2.csproj" />
+  <Project Path="OpenAPIV3/OpenAPIV3.csproj" />
+</Solution>

@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="AppHost/AppHost.csproj" />
+  <Project Path="UploadAndScan2Full/UploadAndScan2Full.csproj" />
+</Solution>
