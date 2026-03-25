@@ -1,4 +1,4 @@
-/certificate add name="Samayas Mikrotik Root CA" common-name="SamayasMikrotikRootCA" country="LU" state="Luxembourg" locality="Luxembourg" organization="Samayas" unit="Development" key-size=4096 days-valid=3650 key-usage=key-cert-sign,crl-sign
+﻿/certificate add name="Samayas Mikrotik Root CA" common-name="SamayasMikrotikRootCA" country="LU" state="Luxembourg" locality="Luxembourg" organization="Samayas" unit="Development" key-size=4096 days-valid=3650 key-usage=key-cert-sign,crl-sign
 
 
 /certificate sign "Samayas Mikrotik Root CA" ca-crl-host=192.168.120.254
@@ -18,7 +18,7 @@
 
 /certificate add name="testrouter2.samayas.eu" common-name="testrouter2.samayas.eu" country="LU" state="Luxembourg" locality="Luxembourg" organization="Samayas" unit="Development" key-size=4096 days-valid=3600 subject-alt-name=DNS:testrouter2.samayas.eu,IP:192.168.120.99 key-usage=digital-signature,key-encipherment,tls-server
 
-/certificate add-scep template=testrouter2.samayas.eu scep-url="http://192.168.120.254/scep/samayasroot" challenge-password=4aaae2459cf81a3edb2e
+/certificate add-scep template=testrouter2.samayas.eu scep-url="http://192.168.120.254/scep/samayasroot" challenge-password=
 
 /certificate set "testrouter2.samayas.eu_CA" name="Samayas Mikrotik Root CA"
 /ip service set www-ssl address=192.168.0.0/16 certificate=testrouter2.samayas.eu disabled=no
@@ -36,7 +36,7 @@
 
 /certificate add name="Samayas Mikrotik CapsMan Router2 Server" common-name="SamayasMikrotikCapsManRouter2Server" country="LU" state="Luxembourg" locality="Samayas" organization="Samayas" unit="Development" key-size=4096 days-valid=3650 key-usage=digital-signature,key-encipherment,data-encipherment
 
-/certificate add-scep template="Samayas Mikrotik CapsMan Router2 Server" scep-url="http://192.168.120.254/scep/samayascapsman" challenge-password=4aaae2459cf81a3edb2e
+/certificate add-scep template="Samayas Mikrotik CapsMan Router2 Server" scep-url="http://192.168.120.254/scep/samayascapsman" challenge-password=
 
 /certificate set "testrouter2.samayas.eu_CA" name="Samayas Mikrotik Root CA"
 
