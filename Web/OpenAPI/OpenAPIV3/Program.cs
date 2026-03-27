@@ -24,7 +24,7 @@ namespace OpenAPIV3.Controllers
             .AddApiExplorer(options =>
             {
                 options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;  // <-- this is the fix
+                options.SubstituteApiVersionInUrl = true;
             });
             builder.Services.AddProblemDetails();
           
