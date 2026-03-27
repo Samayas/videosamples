@@ -39,7 +39,7 @@ namespace OpenAPIV3.Controllers
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
                 options.ShouldInclude = (description) => description.GroupName == "weathertemperature";
-                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather Temperature API", "1.0", "WeatherTemparature", "Weather Temperature Service"));
+                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather Temperature API", "1.1", "WeatherTemparature", "Weather Temperature Service"));
             });
 
             builder.Services.AddSingleton<IWeatherService, WeatherService>();
@@ -65,8 +65,8 @@ namespace OpenAPIV3.Controllers
                     scalarOptions.Favicon = "/scalar/favicon.ico";
                     scalarOptions.AddDocuments(new[]
                     {
-                        new ScalarDocument("weather","Weather API v1","/openapi/weather.json"),
-                        new ScalarDocument("weathertemperature", "Weather Temperature API v1", "/openapi/weathertemperature.json")
+                        new ScalarDocument("weather","Weather API v2","/openapi/weather.json"),
+                        new ScalarDocument("weathertemperature", "Weather Temperature API v1.1", "/openapi/weathertemperature.json")
                     });
                 });
             }

@@ -9,7 +9,7 @@ namespace OpenAPIV3.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiExplorerSettings(GroupName = "weathertemperature")]
-    [ApiVersion(1.0)]
+    [ApiVersion(1.1)]
     public class WeatherTemperatureController : ControllerBase
     {
         private readonly IWeatherService WeatherService;
