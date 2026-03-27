@@ -66,7 +66,7 @@ namespace OpenAPIV3.Controllers
                     scalarOptions.Favicon = "/scalar/favicon.ico";
                     scalarOptions.AddDocuments(new[]
                     {
-                        new ScalarDocument("weather","Weather API v2","/openapi/weather.json"),
+                        new ScalarDocument("weather","Weather API v1","/openapi/weather.json"),
                         new ScalarDocument("weathertemperature", "Weather Temperature API v1", "/openapi/weathertemperature.json")
                     });
                 });

@@ -20,11 +20,10 @@ namespace OpenAPIV2.Controllers
                 options.ReportApiVersions = true;
                 options.ApiVersionReader = new UrlSegmentApiVersionReader();
             })
-            .AddMvc()
             .AddApiExplorer(options =>
             {
                 options.GroupNameFormat = "'v'VVV";
-                options.SubstituteApiVersionInUrl = true;  // <-- this is the fix
+                options.SubstituteApiVersionInUrl = true;
             });
             builder.Services.AddProblemDetails();
 
@@ -52,7 +51,7 @@ namespace OpenAPIV2.Controllers
                 {
                     scalarOptions.AddDocuments(new[]
                     {
-                        new ScalarDocument("weather","Weather API v2","/openapi/weather.json"),
+                        new ScalarDocument("weather","Weather API v1","/openapi/weather.json"),
                         new ScalarDocument("weathertemperature", "Weather Temperature API v1", "/openapi/weathertemperature.json")
                     });
                 });

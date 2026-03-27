@@ -9,7 +9,7 @@ namespace OpenAPIV2.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiExplorerSettings(GroupName = "weathertemperature")]
-    [ApiVersion(1.0)]
+    [ApiVersion(1.1)]
     public class WeatherTemperatureController : ControllerBase
     {
         private readonly IWeatherService WeatherService;
@@ -21,9 +21,9 @@ namespace OpenAPIV2.Controllers
 
         /// <summary>Gets the weather temperature for a given location.</summary>
         /// <param name="weatherRequest">The query parameters containing the target location.</param>
-        /// <returns>A <see cref="WeatherResponse"/> with the current temperature.</returns>
+        /// <returns>Temperature decimal.</returns>
         [HttpGet]
-        [ProducesResponseType(typeof(WeatherResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(decimal), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status500InternalServerError)]
