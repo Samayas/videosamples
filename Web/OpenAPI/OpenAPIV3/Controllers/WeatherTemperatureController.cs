@@ -21,7 +21,6 @@ namespace OpenAPIV3.Controllers
 
         /// <summary>Gets the weather temperature for a given location.</summary>
         /// <param name="weatherRequest">The query parameters containing the target location.</param>
-        /// <param name="cancellationToken">Propagates cancellation signal.</param>
         /// <returns>A <see cref="WeatherResponse"/> with the current temperature.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(WeatherResponse), StatusCodes.Status200OK)]

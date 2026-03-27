@@ -9,7 +9,7 @@ namespace OpenAPIV2.Controllers
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiExplorerSettings(GroupName = "weather")]
-    [ApiVersion(2.0)]
+    [ApiVersion(1.0)]
     public class WeatherController : ControllerBase
     {
         private readonly IWeatherService WeatherService;
@@ -21,7 +21,6 @@ namespace OpenAPIV2.Controllers
 
         /// <summary>Gets the weather forecast for a given location.</summary>
         /// <param name="weatherRequest">The query parameters containing the target location.</param>
-        /// <param name="cancellationToken">Propagates cancellation signal.</param>
         /// <returns>A <see cref="WeatherResponse"/> with the current forecast.</returns>
         [HttpGet]
         [ProducesResponseType(typeof(WeatherResponse), StatusCodes.Status200OK)]

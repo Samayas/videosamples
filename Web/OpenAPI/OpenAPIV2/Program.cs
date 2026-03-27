@@ -27,20 +27,35 @@ namespace OpenAPIV2.Controllers
                 options.SubstituteApiVersionInUrl = true;  // <-- this is the fix
             });
             builder.Services.AddProblemDetails();
-            builder.Services.AddOpenApi(options =>
+
+            builder.Services.AddOpenApi("weather", options =>
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
+                options.ShouldInclude = (description) => description.GroupName == "weather";
+            });
+
+            builder.Services.AddOpenApi("weathertemperature", options =>
+            {
+                options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
+                options.ShouldInclude = (description) => description.GroupName == "weathertemperature";
             });
 
             builder.Services.AddSingleton<IWeatherService, WeatherService>();
 
-            var app = builder.Build();
+            WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();                  // /openapi/v1.json
-                app.MapScalarApiReference();       // /scalar/v1
+                app.MapScalarApiReference(scalarOptions =>
+                {
+                    scalarOptions.AddDocuments(new[]
+                    {
+                        new ScalarDocument("weather","Weather API v2","/openapi/weather.json"),
+                        new ScalarDocument("weathertemperature", "Weather Temperature API v1", "/openapi/weathertemperature.json")
+                    });
+                });
             }
 
             app.UseHttpsRedirection();

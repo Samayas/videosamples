@@ -1,12 +1,10 @@
 ﻿using Asp.Versioning;
-using Microsoft.Extensions.Options;
-using OpenAPIV3.Infrastructure;
 using OpenAPIV3.Infrastructure;
 using OpenAPIV3.Services;
 using OpenAPIV3.Services.Interfaces;
 using Scalar.AspNetCore;
 
-namespace OpenAPIV1.Controllers
+namespace OpenAPIV3.Controllers
 {
     public class Program
     {
@@ -35,19 +33,19 @@ namespace OpenAPIV1.Controllers
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
                 options.ShouldInclude = (description) => description.GroupName == "weather";
-                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather API", "2.0"));
+                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather API", "2.0", "Weather", "Weather Full Service"));
             });
 
             builder.Services.AddOpenApi("weathertemperature", options =>
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
                 options.ShouldInclude = (description) => description.GroupName == "weathertemperature";
-                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather Temperature API", "1.0"));
+                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather Temperature API", "1.0", "WeatherTemparature", "Weather Temperature Service"));
             });
 
             builder.Services.AddSingleton<IWeatherService, WeatherService>();
 
-            var app = builder.Build();
+            WebApplication app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -56,7 +54,7 @@ namespace OpenAPIV1.Controllers
                 app.MapScalarApiReference(scalarOptions =>
                 {
                     scalarOptions.Title = "Samayas Weather APIs";
-                    scalarOptions.Servers = [];
+                    scalarOptions.Servers = [ new ScalarServer("https://api.samayas.eu", "Prod"), new ScalarServer("https://localhost:7191", "Dev")];
                     scalarOptions.Theme = ScalarTheme.None;
                     scalarOptions.Layout = ScalarLayout.Modern;
                     scalarOptions.DarkMode = false;
