@@ -52,7 +52,7 @@ namespace OpenAPIV2.Controllers
                     scalarOptions.AddDocuments(new[]
                     {
                         new ScalarDocument("weather","Weather API v1","/openapi/weather.json"),
-                        new ScalarDocument("weathertemperature", "Weather Temperature API v1", "/openapi/weathertemperature.json")
+                        new ScalarDocument("weathertemperature", "Weather Temperature API v1.1", "/openapi/weathertemperature.json")
                     });
                 });
             }
