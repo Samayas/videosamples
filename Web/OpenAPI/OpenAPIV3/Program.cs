@@ -54,7 +54,7 @@ namespace OpenAPIV3.Controllers
                 {
                     scalarOptions.Title = "Samayas Weather APIs";
                     scalarOptions.Servers = [ new ScalarServer("https://api.samayas.eu", "Prod"), new ScalarServer("https://localhost:7191", "Dev")];
-                    scalarOptions.Theme = ScalarTheme.None;
+                    scalarOptions.Theme = ScalarTheme.DeepSpace;
                     scalarOptions.Layout = ScalarLayout.Modern;
                     scalarOptions.DarkMode = false;
                     scalarOptions.DefaultHttpClient = new KeyValuePair<ScalarTarget, ScalarClient>(

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ImageToBannerResizerV1/ImageToBannerResizerV1.csproj" />
+  <Project Path="ImageToBannerResizerV2/ImageToBannerResizerV2.csproj" />
+  <Project Path="ImageToBannerResizerV3/ImageToBannerResizerV3.csproj" />
+  <Project Path="ImageToBannerResizerV4/ImageToBannerResizerV4.csproj" />
+</Solution>
