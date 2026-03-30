@@ -39,7 +39,7 @@ namespace OpenAPIV3.Controllers
             {
                 options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_1;
                 options.ShouldInclude = (description) => description.GroupName == "weathertemperature";
-                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather Temperature API", "1.1", "WeatherTemparature", "Weather Temperature Service"));
+                options.AddDocumentTransformer(new ApiInfoDocumentTransformer("Weather Temperature API", "1.1", "WeatherTemperature", "Weather Temperature Service"));
             });
 
             builder.Services.AddSingleton<IWeatherService, WeatherService>();
