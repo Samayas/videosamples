@@ -34,6 +34,7 @@ namespace OpenAPIV3.Infrastructure
                 },
                 License = new OpenApiLicense() 
                 {  
+                    Name = "License",
                     Url = new Uri("https://www.samayas.eu/")
                 }
             };
