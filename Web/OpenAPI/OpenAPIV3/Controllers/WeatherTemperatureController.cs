@@ -22,7 +22,9 @@ namespace OpenAPIV3.Controllers
         /// <summary>Gets the weather temperature for a given location.</summary>
         /// <param name="weatherRequest">The query parameters containing the target location.</param>
         /// <returns>A <see cref="WeatherResponse"/> with the current temperature.</returns>
+        /// <remarks>Returns a current tempareature.</remarks>
         [HttpGet]
+        [EndpointName("GetWeatherTemperature")]
         [ProducesResponseType(typeof(WeatherResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
