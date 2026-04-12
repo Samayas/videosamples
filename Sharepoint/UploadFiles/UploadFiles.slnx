@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="CreateFiles/UploadFiles.CreateFiles.csproj" />
+  <Project Path="UploadToSharepointV1/UploadFiles.UploadToSharepointV1.csproj" />
+  <Project Path="UploadToSharepointV2/UploadFiles.UploadToSharepointV2.csproj" />
+  <Project Path="UploadToSharepointV3/UploadFiles.UploadToSharepointV3.csproj" />
+  <Project Path="UploadToSharepointV4/UploadFiles.UploadToSharepointV4.csproj" />
+</Solution>

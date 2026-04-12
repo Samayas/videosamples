@@ -1,0 +1,44 @@
+﻿@model UploadAndScan1Upload.Models.UploadViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>Upload File</h2>
+
+<form asp-action="Index" method="post" enctype="multipart/form-data">
+    <div class="form-group mb-3">
+        <label for="uploadedBy">Uploaded by:</label>
+        <input type="text" name="uploadedBy" id="uploadedBy" class="form-control" placeholder="Enter your name" asp-for="UploadedBy" />
+        <span class="text-danger" asp-validation-for="UploadedBy"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="confidentiality">Confidentiality:</label>
+        <select name="confidentiality" id="confidentiality" class="form-select" asp-for="Confidentiality" asp-items='@(new SelectList(new[] { "Public", "Confidential" }))'>
+        </select>
+        <span class="text-danger" asp-validation-for="Confidentiality"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label for="files">Select files to upload:</label>
+        <input type="file" name="files" id="files" multiple class="form-control" />
+        <span class="text-danger" asp-validation-for="Files"></span>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Upload</button>
+</form>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-info mt-3">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<div class="alert alert-danger mt-3" asp-validation-summary="ModelOnly"></div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
