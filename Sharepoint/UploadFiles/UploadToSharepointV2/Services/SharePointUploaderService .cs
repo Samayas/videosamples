@@ -150,6 +150,7 @@ namespace UploadFiles.UploadToSharepointV2.Services
 
                 using HttpRequestMessage chunkRequest = new HttpRequestMessage(HttpMethod.Put, uploadUrl);
                 chunkRequest.Content = new ByteArrayContent(buffer, 0, bytesRead);
+                chunkRequest.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
                 chunkRequest.Content.Headers.Add("Content-Range", $"bytes {offset}-{rangeEnd}/{fileSize}");
                 chunkRequest.Content.Headers.ContentLength = bytesRead;
 
