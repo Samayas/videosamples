@@ -1,0 +1,42 @@
+# Get current date in YYYY-MM-DD format
+:local currentDate [/system clock get date]
+:local currentYear [:tonum [:pick $currentDate 0 4]]
+:local currentMonth [:tonum [:pick $currentDate 5 7]]
+:local currentDay [:tonum [:pick $currentDate 8 10]]
+
+# Weekday names
+:local weekDaysArray [:toarray "sun,mon,tue,wed,thu,fri,sat"]
+
+# Zeller calculation adjusted to return 0=sun .. 6=sat
+:local y $currentYear
+:local m $currentMonth
+:local d $currentDay
+
+:if ($m < 3) do={
+    :set m ($m + 12)
+    :set y ($y - 1)
+}
+
+:local k ($y % 100)
+:local j (($y - $k) / 100)
+:local h (($d + ((13 * ($m + 1)) / 5) + $k + ($k / 4) + ($j / 4) + (5 * $j)) % 7)
+:local dayOfWeek (($h + 6) % 7)
+:local currentDayOfWeek [:pick $weekDaysArray $dayOfWeek]
+
+# Device info
+:local boardIdentity [/system identity get name]
+:local boardSerial [/system routerboard get serial-number]
+
+# Backup names
+:local backupBaseName ($boardIdentity . "-" . $boardSerial . "-" . $currentDayOfWeek)
+:local backupFileName ($backupBaseName . ".backup")
+
+# Debug logging
+:log info ("Raw date = " . $currentDate)
+:log info ("Parsed year = " . $currentYear . ", month = " . $currentMonth . ", day = " . $currentDay)
+:log info ("Calculated weekday = " . $currentDayOfWeek)
+:log info ("Backup file name = " . $backupFileName)
+
+# Create backup
+:log info ("Backing up full system to file " . $backupBaseName)
+/system backup save dont-encrypt=yes name=$backupBaseName

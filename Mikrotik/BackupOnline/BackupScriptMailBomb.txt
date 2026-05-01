@@ -1,0 +1,21 @@
+:local identity [/system identity get name]
+:local onlineBackupSlotCount [/system backup cloud print count-only]
+
+# Upload with explicit name based on identity
+:if ($onlineBackupSlotCount > 0) do={
+    /system backup cloud upload-file action=create-and-upload \
+        name=$identity \
+        password=yourpassword \
+        replace=[/system backup cloud get 0 name]
+} else={
+    /system backup cloud upload-file action=create-and-upload \
+        name=$identity \
+        password=yourpassword
+}
+
+
+:local key [/system backup cloud get 0 secret-download-key]
+
+/tool e-mail send to="user@bugmenot.com" \
+    subject="[$identity] Backup Key - $date" \
+    body="Router: $identity\nDate: $date\nSecret Key: $key\nPassword: yourpassword"
