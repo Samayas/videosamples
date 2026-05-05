@@ -2,7 +2,7 @@
 using UploadFiles.UploadToSharepointV3.Services;
 using UploadFiles.UploadToSharepointV3.Settings;
 
-namespace UploadFiles.UploadToSharepointV2
+namespace UploadFiles.UploadToSharepointV3
 {
     public class Program
     {
