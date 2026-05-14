@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=LM Studio
+Comment=Run local LLMs with LM Studio 
+Exec=/home/boss/apps/lmstudio/lm-studio
+Path=/home/boss/apps/lmstudio
+Icon=/home/boss/apps/lmstudio/lm-studio.png
+Terminal=false
+Categories=Development
+StartupNotify=true

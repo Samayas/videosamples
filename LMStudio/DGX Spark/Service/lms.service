@@ -1,0 +1,15 @@
+[Unit]
+Description=LM Studio headless server
+After=network.target
+
+[Service]
+Type=forking
+ExecStartPre=-/home/boss/.lmstudio/bin/lms daemon down
+ExecStartPre=/home/boss/.lmstudio/bin/lms daemon up
+ExecStart=/home/boss/.lmstudio/bin/lms server start --bind 0.0.0.0 --port 1234
+ExecStop=/home/boss/.lmstudio/bin/lms server stop
+ExecStopPost=/home/boss/.lmstudio/bin/lms daemon down
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
