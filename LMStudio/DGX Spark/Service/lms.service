@@ -1,6 +1,7 @@
 [Unit]
 Description=LM Studio headless server
 After=network.target
+Wants=network-online.target
 
 [Service]
 Type=forking
