@@ -383,3 +383,5 @@ FodyWeavers.xsd
 /Nuget/NuspecUpdater/MergeCSProjectsToNuspec3App/App/Properties/launchSettings.json
 /DocFX/DocFX/_site
 /TestProjects/TestProject3/results
+
+.vscode/
