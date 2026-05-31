@@ -1,0 +1,14 @@
+[Unit]
+Description=DS4 headless server
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/boss/apps/ds4
+ExecStart=/home/boss/apps/ds4/ds4-server --host 0.0.0.0 --port 1235 --model /home/boss/models/deepseek-v4-flash/DeepSeek-V4-Flash-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2.gguf --ctx 524288
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
