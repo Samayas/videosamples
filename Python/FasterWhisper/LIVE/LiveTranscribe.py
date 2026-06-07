@@ -154,7 +154,7 @@ def transcribe_continuous(
     model_path = os.path.join(models_dir, model_size) if models_dir else model_size
 
     print(f"Loading model: {model_path}")
-    model = WhisperModel(model_path, device="cpu", compute_type="int8")
+    model = WhisperModel(model_path, device="cuda", compute_type="float16")
 
     audio_buffer = RollingAudioBuffer(max_seconds=MAX_BUFFER_SECONDS)
     capture_thread, _ = audio_capture_worker(audio_buffer)
