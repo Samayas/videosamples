@@ -8,4 +8,40 @@
     <TestingExtensionsProfile>AllMicrosoft</TestingExtensionsProfile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Testing.Extensions.AzureDevOpsReport" Version="2.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Testing.Extensions.CodeCoverage" Version="18.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Testing.Extensions.CrashDump" Version="2.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Testing.Extensions.HangDump" Version="2.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Testing.Extensions.HotReload" Version="2.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Testing.Extensions.Retry" Version="2.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.Testing.Extensions.TrxReport" Version="2.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="MSTest.TestAdapter" Version="4.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="MSTest.TestFramework" Version="4.3.2" />
+  </ItemGroup>
+
 </Project>

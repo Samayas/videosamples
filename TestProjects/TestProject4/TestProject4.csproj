@@ -8,4 +8,12 @@
     <TestingExtensionsProfile>None</TestingExtensionsProfile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Update="MSTest.TestAdapter" Version="4.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="MSTest.TestFramework" Version="4.3.2" />
+  </ItemGroup>
+
 </Project>

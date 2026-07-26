@@ -1,7 +1,7 @@
 * Install Script for LM Studio Desktop on Ubuntu
     cd ~/apps/lmstudio
     sudo rm -r *
-    cp Downloads/LM\*.AppImage \~/apps/lmstudio
+    cp ~/Downloads/LM\*.AppImage \~/apps/lmstudio
     chmod +x LM\*.AppImage
     ./LM-Studio-0.4.12-a-arm64.AppImage --appimage-extract
     mv squashfs-root/\* .

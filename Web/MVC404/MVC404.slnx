@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="MVC404Final/MVC404Final.csproj" />
+  <Project Path="MVC404Pre/MVC404Pre.csproj" />
+  <Project Path="MVC404Step1/MVC404Step1.csproj" />
+</Solution>

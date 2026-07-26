@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36429.23 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1", "Analyzer1\Analyzer1\Analyzer1.csproj", "{3996D044-9AE8-4D4D-8583-EE568D31A86E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1", "Analyzer1\Analyzer1.csproj", "{3996D044-9AE8-4D4D-8583-EE568D31A86E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.CodeFixes", "Analyzer1\Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj", "{A5AC6669-0DE1-495B-971A-C4EF068F0A11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.CodeFixes", "Analyzer1.CodeFixes\Analyzer1.CodeFixes.csproj", "{A5AC6669-0DE1-495B-971A-C4EF068F0A11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Package", "Analyzer1\Analyzer1.Package\Analyzer1.Package.csproj", "{3679724A-52D5-4847-8524-1EECCD0DE074}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Package", "Analyzer1.Package\Analyzer1.Package.csproj", "{3679724A-52D5-4847-8524-1EECCD0DE074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Test", "Analyzer1\Analyzer1.Test\Analyzer1.Test.csproj", "{8546685F-BF8A-4C3F-A775-E3AB0B9EFB8C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Test", "Analyzer1.Test\Analyzer1.Test.csproj", "{8546685F-BF8A-4C3F-A775-E3AB0B9EFB8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Vsix", "Analyzer1\Analyzer1.Vsix\Analyzer1.Vsix.csproj", "{CCE02B6B-C6E7-43F3-A47E-5B2D2415DF34}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analyzer1.Vsix", "Analyzer1.Vsix\Analyzer1.Vsix.csproj", "{CCE02B6B-C6E7-43F3-A47E-5B2D2415DF34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
