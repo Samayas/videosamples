@@ -7,29 +7,28 @@ import time
 import numpy as np
 import pyaudiowpatch as pyaudio
 import requests
-import json
 from collections import deque
 from typing import Deque, List, Optional, Tuple
 from faster_whisper import WhisperModel
 
-# ... [Existing Constants] ...
 DEFAULT_MODEL_SIZE = "base"
 TARGET_SAMPLE_RATE = 16000
 CHUNK_FRAMES = 1024
-TRANSCRIBE_WINDOW_SECONDS = 3.0 # Reduced for faster detection
-STEP_SECONDS = 0.5             # Faster polling
+TRANSCRIBE_WINDOW_SECONDS = 3.0
+STEP_SECONDS = 0.5
 OVERLAP_SECONDS = 1.0
-MAX_BUFFER_SECONDS = 20.0
+MAX_BUFFER_SECONDS = 30.0
 
-# Interview Assistant Specific Constants
-OLLAMA_URL = "http://192.168.150.149:11434/v1/chat/completions"
-OLLAMA_MODEL = "google/gemma-4-12b"
-OLLAMA_TOKEN = "sk-lm-bVdP5V81:FvgpGpCfJhFDefCr27ZA"
-SILENCE_THRESHOLD_SECONDS = 1.5  # How long to wait for silence before assuming a question is asked
+AI_URL = "http://192.168.150.149:11434/v1/chat/completions"
+AI_MODEL = "zai-org/glm-4.7-flash"
+AI_TOKEN = "sk-lm-bVdP5V81:FvgpGpCfJhFDefCr27ZA"
+SILENCE_THRESHOLD_SECONDS = 1.5
 
 stop_requested = False
 
-# ... [Existing resample_audio, pcm16_bytes_to_mono_float32, normalize_text functions] ...
+def handle_stop_signal(signum, frame) -> None:
+    global stop_requested
+    stop_requested = True
 
 def resample_audio(audio: np.ndarray, source_rate: int, target_rate: int) -> np.ndarray:
     if source_rate == target_rate: return audio.astype(np.float32, copy=False)
@@ -53,8 +52,6 @@ def pcm16_bytes_to_mono_float32(raw_data: bytes, channels: int) -> np.ndarray:
 
 def normalize_text(value: str) -> str:
     return " ".join(value.strip().lower().split())
-
-# ... [Existing RollingAudioBuffer class] ...
 
 class RollingAudioBuffer:
     def __init__(self, max_seconds: float) -> None:
@@ -88,7 +85,7 @@ class RollingAudioBuffer:
 
 def query_llm(prompt: str) -> str:
     payload: dict = {
-        "model": OLLAMA_MODEL,
+        "model": AI_MODEL,
         "messages": [
             {"role": "user", "content": f"You are an interview assistant. Provide a concise, highly technical answer (max 400 chars) to this question/statement: {prompt}"}
         ],
@@ -96,14 +93,12 @@ def query_llm(prompt: str) -> str:
         "max_tokens": 4000
     }
     try:
-        headers = {"Authorization": f"Bearer {OLLAMA_TOKEN}"}
-        response = requests.post(OLLAMA_URL, json=payload, headers=headers, timeout=300)
+        headers = {"Authorization": f"Bearer {AI_TOKEN}"}
+        response = requests.post(AI_URL, json=payload, headers=headers, timeout=300)
         response.raise_for_status()
         return response.json().get("choices")[0].get("message").get("content").strip()
     except Exception as e:
         return f"Error: {str(e)}"
-
-# ... [Existing audio_capture_worker] ...
 
 def audio_capture_worker(audio_buffer: RollingAudioBuffer) -> Tuple[threading.Thread, pyaudio.PyAudio]:
     audio_interface = pyaudio.PyAudio()
@@ -143,19 +138,24 @@ def audio_capture_worker(audio_buffer: RollingAudioBuffer) -> Tuple[threading.Th
     thread.start()
     return thread, audio_interface
 
-def transcribe_continuous(model_size: str = DEFAULT_MODEL_SIZE) -> None:
-    print(f"Loading model...")
-    model = WhisperModel(model_size, device="cpu", compute_type="int8")
+def transcribe_continuous(
+    model_size: str = DEFAULT_MODEL_SIZE,
+    models_dir: Optional[str] = None,
+) -> None:
+    model_path = os.path.join(models_dir, model_size) if models_dir else model_size
+
+    print(f"Loading model: {model_path}")
+    model = WhisperModel(model_size, device="cuda", compute_type="float16")
+    
     audio_buffer = RollingAudioBuffer(max_seconds=MAX_BUFFER_SECONDS)
     capture_thread, _ = audio_capture_worker(audio_buffer)
 
     last_transcription_time = 0.0
     recent_lines: Deque[str] = deque(maxlen=10)
     
-    # --- Interview Logic Variables ---
     utterance_buffer: List[str] = []
     last_speech_detected_time = time.time()
-    pipeline_start_time = None  # Tracks when first speech in current turn was detected
+    pipeline_start_time = None 
 
     try:
         while not stop_requested:
@@ -169,12 +169,16 @@ def transcribe_continuous(model_size: str = DEFAULT_MODEL_SIZE) -> None:
             window_audio = audio_buffer.get_last_seconds(TRANSCRIBE_WINDOW_SECONDS)
             capture_ms = (time.perf_counter() - t_capture) * 1000
 
-            if len(window_audio) < (int(1.0 * TARGET_SAMPLE_RATE)):
+            minimum_samples = int(1.0 * TARGET_SAMPLE_RATE)
+            if len(window_audio) < minimum_samples:
                 continue
 
             try:
                 t_transcribe = time.perf_counter()
-                segments, _ = model.transcribe(window_audio, vad_filter=True, beam_size=1)
+                segments, _ = model.transcribe(
+                    window_audio, 
+                    vad_filter=True, 
+                    beam_size=1)
                 transcribe_ms = (time.perf_counter() - t_transcribe) * 1000
             except Exception:
                 continue
@@ -194,17 +198,13 @@ def transcribe_continuous(model_size: str = DEFAULT_MODEL_SIZE) -> None:
                     pipeline_start_time = time.perf_counter()
                 print(f"[Live] (+{capture_ms:.0f}ms capture / +{transcribe_ms:.0f}s whisper): {clean_text}")
 
-            # Logic: If we had speech, update the timestamp of last activity
             if has_speech_in_this_window:
                 last_speech_detected_time = time.time()
             else:
-                # Logic: If no speech was detected in this window AND 
-                # we have something in our buffer, check if it's been silent long enough
                 t_silence_check = time.time() - last_speech_detected_time
                 if utterance_buffer and (t_silence_check > SILENCE_THRESHOLD_SECONDS):
                     full_query = " ".join(utterance_buffer)
 
-                    # Clear buffer immediately to prevent double-triggering
                     utterance_buffer = []
 
                     t_llm_start = time.perf_counter()
@@ -226,9 +226,13 @@ def transcribe_continuous(model_size: str = DEFAULT_MODEL_SIZE) -> None:
         gc.collect()
 
 if __name__ == "__main__":
-    signal.signal(signal.SIGINT, lambda s, f: globals().update(stop_requested=True))
+    signal.signal(signal.SIGINT, handle_stop_signal)
+    if hasattr(signal, "SIGTERM"):
+        signal.signal(signal.SIGTERM, handle_stop_signal)
+
     try:
         transcribe_continuous()
     except KeyboardInterrupt:
         stop_requested = True
+        print("\nStopping...")
         sys.exit(0)
