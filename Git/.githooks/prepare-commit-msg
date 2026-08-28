@@ -1,0 +1,2 @@
+#!/bin/sh
+exec pwsh -NoProfile -ExecutionPolicy Bypass -File "$(dirname "$0")/prepare-commit-msg.ps1" "$1" "$2" "$3"
