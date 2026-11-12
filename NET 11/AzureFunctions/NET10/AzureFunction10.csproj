@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="Globals">
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Company>Samayas.eu</Company>
+    <Copyright>Samayas</Copyright>
+    <Authors>Samayas</Authors>
+    <Version Condition=" '$(BUILD_BUILDNUMBER)' == '' ">1.0.0-Development</Version>
+    <Version Condition=" '$(BUILD_BUILDNUMBER)' != '' ">$(ProjectVersionNumber)</Version>
+    <InformationalVersion Condition=" '$(BUILD_BUILDNUMBER)' == '' ">Development Build</InformationalVersion>
+    <InformationalVersion Condition=" '$(BUILD_BUILDNUMBER)' != '' ">Release Build - $(BUILD_BUILDNUMBER)</InformationalVersion>
+    <AssemblyName>Function</AssemblyName>
+    <RootNamespace>Function</RootNamespace>
+    <Description>Function.</Description>
+    <LangVersion>latest</LangVersion>
+    <ProjectGuid>{A2EA090E-7143-FAC3-5A34-764477D34187}</ProjectGuid>
+    <SignAssembly>True</SignAssembly>
+    <Nullable>enable</Nullable>
+    <OutputType>Exe</OutputType>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <IsPackable>False</IsPackable>
+    <PackageId>Function</PackageId>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.52.0" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Timer" Version="4.3.1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.1.0" />
+  </ItemGroup>
+</Project>

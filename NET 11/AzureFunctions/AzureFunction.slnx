@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="NET10/AzureFunction10.csproj" />
+  <Project Path="NET11/AzureFunction11.csproj" />
+</Solution>
